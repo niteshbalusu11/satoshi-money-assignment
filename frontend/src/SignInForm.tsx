@@ -4,6 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import { getUser } from "./api";
 import Dashboard from "./Dashboard";
 
+// Sign in form that gets the userId and gets the user from the db
 const SignInForm: React.FC = () => {
   const [id, setId] = useState("");
 

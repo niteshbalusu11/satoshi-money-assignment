@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { getUser } from "../api";
 import { useQuery } from "@tanstack/react-query";
 
+// Gets the logged in user's data and renders it
 const UserCard: React.FC = () => {
   const userId = localStorage.getItem("userId");
 

@@ -24,5 +24,6 @@
 - You will see a sign in and sign up buttons.
 - Hit sign up, enter a random name. Do a few sign ups for multiple users to by logging out.
 - Copy one of the user's ID and use it for signing in. (There is no authentication).
+- All users start with a starting token balance of 100k.
 - Once you login, use send tokens button to send funds to other users.
 - Current logged in user data is stored in local storage of the browser.

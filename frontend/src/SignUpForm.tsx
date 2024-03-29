@@ -4,6 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import { createUser } from "./api";
 import Dashboard from "./Dashboard";
 
+// Sign up form that creates a new user in the db
 const SignUpForm: React.FC = () => {
   const [name, setName] = useState("");
 

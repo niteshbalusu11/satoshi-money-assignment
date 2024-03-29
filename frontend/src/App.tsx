@@ -6,6 +6,7 @@ import Dashboard from "./Dashboard";
 
 const queryClient = new QueryClient();
 
+// App starts here.
 const App: React.FC = () => {
   const [isSignIn, setIsSignIn] = useState<boolean | undefined>();
   const userId = localStorage.getItem("userId");

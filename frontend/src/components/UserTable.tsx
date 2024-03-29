@@ -8,6 +8,7 @@ type User = {
   balance: number;
 };
 
+// Gets all user info and renders it into a table.
 const UserTable: React.FC = () => {
   const queryClient = useQueryClient();
 
@@ -35,7 +36,6 @@ const UserTable: React.FC = () => {
   const handleSend = (userId: string) => {
     const senderId = localStorage.getItem("userId");
     if (!amount || Number.isNaN(amount)) {
-      alert("not a number");
       return;
     }
 

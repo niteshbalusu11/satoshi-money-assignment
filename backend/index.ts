@@ -11,14 +11,17 @@ const dbHost = Bun.env.POSTGRES_HOST;
 const dbPort = Bun.env.POSTGRES_PORT;
 const dbName = Bun.env.POSTGRES_DB_NAME;
 
+// Bail if any of the env variables are missing.
 if (!dbUser || !dbPassword || !dbHost || !dbPort || !dbName) {
   throw new Error("Postgres credentials details are required");
 }
 
+// Setup express app with cors
 const app = express();
 app.use(cors());
 app.use(express.json());
 
+// Connect to postgres using creds from above.
 const pool = new Pool({
   user: dbUser,
   password: dbPassword,
@@ -27,6 +30,7 @@ const pool = new Pool({
   database: dbName,
 });
 
+// Create an initial table for users.
 pool
   .query(
     `
@@ -45,6 +49,8 @@ pool
     throw error;
   });
 
+// This end point creates a new user.
+// All users start with 100k tokens as initial balance.
 app.post("/api/createuser", async (req, res) => {
   try {
     const { name } = req.body;
@@ -66,6 +72,7 @@ app.post("/api/createuser", async (req, res) => {
   }
 });
 
+// This end point returns userinfo for a given userid.
 app.get("/api/getuser/:id", async (req, res) => {
   try {
     const { id } = req.params;
@@ -84,6 +91,7 @@ app.get("/api/getuser/:id", async (req, res) => {
   }
 });
 
+// This endpoint returns a list of all users in the db
 app.get("/api/users", async (req, res) => {
   try {
     const result = await pool.query("SELECT id, name, balance FROM users");
@@ -95,6 +103,7 @@ app.get("/api/users", async (req, res) => {
   }
 });
 
+// This endpoint sends amount between users
 app.post("/api/send", async (req, res) => {
   try {
     const { id } = req.body;
@@ -153,6 +162,7 @@ app.post("/api/send", async (req, res) => {
   }
 });
 
+// Start the server
 app.listen(3000, () => {
   console.log("Server is running on port 3000");
 });
