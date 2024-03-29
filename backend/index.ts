@@ -5,7 +5,7 @@ import cors from "cors";
 
 const makeId = () => crypto.randomBytes(16).toString("hex");
 const initialUserBalance = 100000;
-const dbUser = Bun.env.POSTGRES_USER_ID;
+const dbUser = Bun.env.POSTGRES_USER;
 const dbPassword = Bun.env.POSTGRES_PASSWORD;
 const dbHost = Bun.env.POSTGRES_HOST;
 const dbPort = Bun.env.POSTGRES_PORT;

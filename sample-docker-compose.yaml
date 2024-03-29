@@ -10,8 +10,8 @@ services:
     depends_on:
       - db
     environment:
-      POSTGRES_USER_ID: ${some_user_name}
-      POSTGRES_PASSWORD: ${some_password}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       POSTGRES_DB_NAME: satoshi
       POSTGRES_PORT: 5432
       POSTGRES_HOST: db
@@ -33,8 +33,8 @@ services:
     image: postgres:latest
     container_name: db
     environment:
-      POSTGRES_USER: ${someusername}
-      POSTGRES_PASSWORD: ${somepassword}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       POSTGRES_DB: satoshi
     ports:
       - "5432:5432"
