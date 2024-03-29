@@ -1,6 +1,7 @@
 import express from "express";
 import { Pool } from "pg";
 import crypto from "node:crypto";
+import cors from "cors";
 
 const makeId = () => crypto.randomBytes(16).toString("hex");
 const initialUserBalance = 100000;
@@ -15,6 +16,7 @@ if (!dbUser || !dbPassword || !dbHost || !dbPort || !dbName) {
 }
 
 const app = express();
+app.use(cors());
 app.use(express.json());
 
 const pool = new Pool({
@@ -57,7 +59,7 @@ app.post("/api/createuser", async (req, res) => {
       [userId, name, initialUserBalance]
     );
 
-    res.status(201).json({ id: userId, name, initialUserBalance });
+    res.status(201).json({ id: userId, name, balance: initialUserBalance });
   } catch (error) {
     console.error("Error creating user:", error);
     res.status(500).json({ error: "Internal server error" });
